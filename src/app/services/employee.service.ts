@@ -1,9 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Employee } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor() { }
+  private apiurl ="http://localhost:5169/api/Employee";
+  constructor(private http:HttpClient) { 
+
+  }
+
+  getallemp():Observable<Employee[]>{
+    return this.http.get<Employee[]> (`${this.apiurl}/Getallemp`)
+  }
+  getempbyid(id:number):Observable<Employee>{
+    return this.http.get<Employee>(`${this.apiurl}/getempbyid/${id}`)
+  }
+
 }
