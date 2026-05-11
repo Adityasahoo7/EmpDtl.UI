@@ -19,5 +19,8 @@ export class EmployeeService {
   getempbyid(id:number):Observable<Employee>{
     return this.http.get<Employee>(`${this.apiurl}/getempbyid/${id}`)
   }
+  addemployee(employee:Employee):Observable<any>{
+    return this.http.post(`${this.apiurl}/CreateEmployee`,employee,{responseType:'text'});
+  }
 
 }
