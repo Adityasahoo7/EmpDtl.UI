@@ -23,4 +23,7 @@ export class EmployeeService {
     return this.http.post(`${this.apiurl}/CreateEmployee`,employee,{responseType:'text'});
   }
 
+  updateemployee(id:number,employee:Employee):Observable<any>{
+    return this.http.put(`${this.apiurl}/updateemp/${id}`,employee,{responseType:'text'})
+  }
 }
