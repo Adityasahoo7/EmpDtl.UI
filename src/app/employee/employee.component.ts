@@ -49,7 +49,7 @@ getallemp(){
 
 saveemployee(){
   if(this.isEdit){
-    this.empservice.updateemployee(this.employee.id,this.employee)
+    this.empservice.updateemployee(this.employee.id!,this.employee)
     .subscribe({
       next:()=>{
         alert("Employee Update successfully");
@@ -60,5 +60,17 @@ saveemployee(){
   }
 }
 
+resetForm(){
+  this.employee={
+    name:'',
+    phone:'',
+    email:'',
+    department:'',
+    designation:'',
+    salary:0,
+    managerid:0
+  };
+  this.isEdit=false;
+}
 
 }
