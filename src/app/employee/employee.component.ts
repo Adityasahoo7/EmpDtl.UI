@@ -55,9 +55,28 @@ saveemployee(){
         alert("Employee Update successfully");
         this.getallemp();
         this.resetForm();
+      },
+      error:(err)=>{
+
+        console.log(err);
       }
-    })
+    });
   }
+else{
+  this.empservice.addemployee(this.employee)
+  .subscribe({
+next:()=>{
+  alert("employee Created successfully");
+  this.getallemp();
+  this.resetForm();
+
+},
+error:(err)=>{
+  console.log(err);
+}
+  });
+}
+
 }
 
 resetForm(){
