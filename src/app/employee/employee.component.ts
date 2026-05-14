@@ -11,7 +11,10 @@ export class EmployeeComponent implements OnInit{
 
   employees:Employee[] =[];
 
+
+
   employee:Employee={
+
     name:'',
     phone:'',
     email:'',
@@ -39,10 +42,23 @@ getallemp(){
     error: (err)=>{
       console.log(err);
     }
-
+         
   });
 }
 
+
+saveemployee(){
+  if(this.isEdit){
+    this.empservice.updateemployee(this.employee.id,this.employee)
+    .subscribe({
+      next:()=>{
+        alert("Employee Update successfully");
+        this.getallemp();
+        this.resetForm();
+      }
+    })
+  }
+}
 
 
 }
