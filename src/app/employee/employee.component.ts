@@ -81,6 +81,21 @@ this.employee={...emp};
 this.isEdit=true; 
 }
 
+deleteemployee(id:number){
+  if(confirm('Are you sure to delete')){
+    this.empservice.deleteemp(id)
+    .subscribe({
+      next:()=>{
+        alert('Employee deleted successfully');
+        this.getallemp();
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+  }
+}
+
 resetForm(){
   this.employee={
     name:'',
