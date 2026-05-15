@@ -10,9 +10,6 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeComponent implements OnInit{
 
   employees:Employee[] =[];
-
-
-
   employee:Employee={
 
     name:'',
@@ -77,6 +74,11 @@ error:(err)=>{
   });
 }
 
+}
+
+editemployee(emp:Employee){
+this.employee={...emp};
+this.isEdit=true; 
 }
 
 resetForm(){
