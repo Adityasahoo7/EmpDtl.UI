@@ -11,7 +11,6 @@ export class EmployeeComponent implements OnInit{
 
   employees:Employee[] =[];
   employee:Employee={
-
     name:'',
     phone:'',
     email:'',
