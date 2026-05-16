@@ -16,3 +16,9 @@
 <input type="text" class="form-control" [(ngModel)]="employee.designation" placeholder="Enter Designation">
 <label>ManagerId</label>
 <input type="text" class="form-control" [(ngModel)]="employee.managerid" placeholder="Enter ManagerId">
+
+<button class="btn btn-primary" 
+        (click)="saveemployee()">
+         {{ isEdit ? 'Update Employee' : 'Add Employee' }}
+
+</button>

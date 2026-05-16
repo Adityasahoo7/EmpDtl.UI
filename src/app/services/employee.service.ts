@@ -8,7 +8,7 @@ import { Employee } from '../models/employee.model';
 })
 export class EmployeeService {
 
-  private apiurl ="http://localhost:5169/api/Employee";
+  private apiurl ="http://localhost:5212/api/Employee";
   constructor(private http:HttpClient) { 
 
   }
