@@ -15,7 +15,7 @@
 <label>Designation</label>
 <input type="text" class="form-control" [(ngModel)]="employee.designation" placeholder="Enter Designation">
 <label>ManagerId</label>
-<input type="text" class="form-control" [(ngModel)]="employee.managerid" placeholder="Enter ManagerId">
+<input type="text" class="form-control" [(ngModel)]="employee.managerId" placeholder="Enter ManagerId">
 
 <button class="btn btn-primary" 
         (click)="saveemployee()">
@@ -38,8 +38,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let emp of employees">
-                <td></td>
+            <tr *ngFor="let emploop of employees">
+                <td>{{emploop.id}}</td>
+                <td>{{emploop.name}}</td>
+                <td>{{emploop.email}}</td>
+                <td>{{emploop.salary}}</td>
+                <td>{{emploop.department}}</td>
+                <td>{{emploop.designation}}</td>
+                <td>{{emploop.managerId}}</td>
 
             </tr>
         </tbody>

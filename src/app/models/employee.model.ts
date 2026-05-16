@@ -7,6 +7,6 @@ email:string;
 department:string;
 designation:string;
 salary:number;
-managerid:number
+managerId:number
 
 }

@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit{
     department:'',
     designation:'',
     salary:0,
-    managerid:0
+    managerId:0
   };
 
   isEdit = false;
@@ -103,7 +103,7 @@ resetForm(){
     department:'',
     designation:'',
     salary:0,
-    managerid:0
+    managerId:0
   };
   this.isEdit=false;
 }
