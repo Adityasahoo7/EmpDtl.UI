@@ -19,8 +19,9 @@ export class EmployeeComponent implements OnInit{
     designation:'',
     salary:0,
     managerId:0
+    
   };
-
+selectedResume!: File;
   isEdit = false;
   /**
    *
@@ -63,17 +64,45 @@ downloderesume(id:number):void{
 }
 saveemployee(){
   if(this.isEdit){
-    this.empservice.updateemployee(this.employee.id!,this.employee)
-    .subscribe({
-      next:()=>{
-        alert("Employee Update successfully");
-        this.getallemp();
-        this.resetForm();
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    });
+    // this.empservice.updateemployee(this.employee.id!,this.employee)
+    // .subscribe({
+    //   next:()=>{
+    //     alert("Employee Update successfully");
+    //     this.getallemp();
+    //     this.resetForm();
+    //   },
+    //   error:(err)=>{
+    //     console.log(err);
+    //   }
+    // });
+ const formdata =new FormData();
+formdata.append('id',this.employee.id!.toString());
+formdata.append('Name',this.employee.name);
+formdata.append('Email',this.employee.email);
+formdata.append('Phone',this.employee.phone);
+formdata.append('Department',this.employee.department);
+formdata.append('Designation',this.employee.designation);
+formdata.append('Salary',(this.employee.salary ?? 0).toString());
+
+if(this.selectedResume){
+  formdata.append('Resume',this.selectedResume)
+}
+
+this.empservice.updateemployee(this.employee.id!,formdata).subscribe({
+next:(res)=>{
+  console.log(res);
+  alert('Employee Update Successfully');
+
+  this.resetForm();
+},
+error:(err)=>{
+  console.log(err);
+}
+
+
+});
+
+
   }
 else{
   this.empservice.addemployee(this.employee)
@@ -94,6 +123,46 @@ editemployee(emp:Employee){
 this.employee={...emp};
 this.isEdit=true; 
 }
+
+onResumeSelected(event: any): void {
+
+  if (event.target.files.length > 0) {
+
+    this.selectedResume = event.target.files[0];
+
+  }
+
+}
+// updateemployee():void{
+//   const formdata =new FormData();
+// formdata.append('id',this.employee.id!.toString());
+// formdata.append('Name',this.employee.name);
+// formdata.append('Email',this.employee.email);
+// formdata.append('Phone',this.employee.phone);
+// formdata.append('Department',this.employee.department);
+// formdata.append('Designation',this.employee.designation);
+// formdata.append('Salary',this.employee.salary.toString());
+
+// if(this.selectedResume){
+//   formdata.append('Resume',this.selectedResume)
+// }
+
+// this.empservice.updateemployee(this.employee.id!,formdata).subscribe({
+// next:(res)=>{
+//   console.log(res);
+// },
+// error:(err)=>{
+//   console.log(err);
+// }
+
+
+// });
+
+
+// }
+
+
+
 deleteemployee(id:number){
   if(confirm('Are you sure to delete')){
     this.empservice.deleteemp(id)

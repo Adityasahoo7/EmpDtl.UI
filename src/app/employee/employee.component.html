@@ -14,8 +14,24 @@
 <input type="text" class="form-control" [(ngModel)]="employee.department" placeholder="Enter Department">
 <label>Designation</label>
 <input type="text" class="form-control" [(ngModel)]="employee.designation" placeholder="Enter Designation">
+<label>Salary</label>
+<input type="text" class="form-control" [(ngModel)]="employee.salary" placeholder="Enter Salary">
+
+
+<div *ngIf="!isEdit">
+    
 <label>ManagerId</label>
 <input type="text" class="form-control" [(ngModel)]="employee.managerId" placeholder="Enter ManagerId">
+
+</div>
+
+<label class="form-label">Resume</label>
+
+  <input
+    type="file"
+    class="form-control"
+    accept=".pdf,.doc,.docx"
+    (change)="onResumeSelected($event)">
 
 <button class="btn btn-primary" 
         (click)="saveemployee()">
