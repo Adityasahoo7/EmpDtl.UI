@@ -43,24 +43,30 @@ getallemp(){
          
   });
 }
-downloderesume(id:number):void{
-  this.empservice.getresume(id).subscribe({
-    next: (blob:Blob)=>{
+
+downloderesume(emp: Employee): void {
+
+  this.empservice.getresume(emp.id!).subscribe({
+    next: (blob: Blob) => {
+
       const url = window.URL.createObjectURL(blob);
+
       const link = document.createElement('a');
 
-      link.href=url;
-      link.download='Resume.pdf';
+      link.href = url;
+
+      link.download =
+        `Resume_${emp.name}_${emp.email}.pdf`;
+
       link.click();
 
       window.URL.revokeObjectURL(url);
-
     },
-
-    error:(err)=>{
+    error: (err) => {
       console.log(err);
     }
-  })
+  });
+
 }
 saveemployee(){
   if(this.isEdit){
