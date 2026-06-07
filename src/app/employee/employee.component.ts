@@ -105,18 +105,43 @@ error:(err)=>{
 
   }
 else{
-  this.empservice.addemployee(this.employee)
-  .subscribe({
-next:()=>{
-  alert("employee Created successfully");
-  this.getallemp();
-  this.resetForm();
+//   this.empservice.addemployee(this.employee)
+//   .subscribe({
+// next:()=>{
+//   alert("employee Created successfully");
+//   this.getallemp();
+//   this.resetForm();
 
-},
-error:(err)=>{
-  console.log(err);
+// },
+// error:(err)=>{
+//   console.log(err);
+// }
+//   });
+
+const formdata = new FormData();
+formdata.append('Name',this.employee.name);
+formdata.append('Email',this.employee.email);
+formdata.append('Phone',this.employee.phone);
+formdata.append('Department',this.employee.department);
+formdata.append('Designation',this.employee.designation);
+formdata.append('Salary',(this.employee.salary ?? 0).toString());
+formdata.append('ManagerId',this.employee.managerId.toString());
+
+if(this.selectedResume){
+  formdata.append('Resume',this.selectedResume);
 }
-  });
+
+this.empservice.addemployeeresume(formdata).subscribe({
+  next:(res)=>{
+    console.log(res);
+    alert('Employee Update Successfully');
+    this.getallemp();
+    this.resetForm();
+  },
+  error:(err)=>{
+    console.log(err);
+  }
+});
 }
 }
 editemployee(emp:Employee){

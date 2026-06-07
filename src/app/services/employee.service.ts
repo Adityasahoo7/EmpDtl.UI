@@ -30,6 +30,9 @@ export class EmployeeService {
     return this.http.post(`${this.apiurl}/CreateEmployee`,employee,{responseType:'text'});
   }
 
+  addemployeeresume(formdata:FormData):Observable<any>{
+    return this.http.post(`${this.apiurl}/create-employee-resume`,formdata,{responseType:'text'})
+  }
   updateemployee(id:number,formdata:FormData):Observable<any>{
     return this.http.put(`${this.apiurl}/UpdateempwithResume/${id}`,formdata,{responseType:'text'})
   }
