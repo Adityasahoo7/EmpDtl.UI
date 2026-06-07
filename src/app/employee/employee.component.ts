@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
+import { windowToggle } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -41,8 +42,25 @@ getallemp(){
          
   });
 }
+downloderesume(id:number):void{
+  this.empservice.getresume(id).subscribe({
+    next: (blob:Blob)=>{
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
 
+      link.href=url;
+      link.download='Resume.pdf';
+      link.click();
 
+      window.URL.revokeObjectURL(url);
+
+    },
+
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+}
 saveemployee(){
   if(this.isEdit){
     this.empservice.updateemployee(this.employee.id!,this.employee)
@@ -53,7 +71,6 @@ saveemployee(){
         this.resetForm();
       },
       error:(err)=>{
-
         console.log(err);
       }
     });
@@ -72,14 +89,11 @@ error:(err)=>{
 }
   });
 }
-
 }
-
 editemployee(emp:Employee){
 this.employee={...emp};
 this.isEdit=true; 
 }
-
 deleteemployee(id:number){
   if(confirm('Are you sure to delete')){
     this.empservice.deleteemp(id)
@@ -107,5 +121,4 @@ resetForm(){
   };
   this.isEdit=false;
 }
-
 }

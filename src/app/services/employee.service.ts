@@ -19,12 +19,19 @@ export class EmployeeService {
   getempbyid(id:number):Observable<Employee>{
     return this.http.get<Employee>(`${this.apiurl}/getempbyid/${id}`)
   }
+  getresume(id:number):Observable<Blob>{
+    return this.http.get(`${this.apiurl}/GetResumebyId/${id}`,
+      {
+        responseType:'blob'
+      }
+    );
+  }
   addemployee(employee:Employee):Observable<any>{
     return this.http.post(`${this.apiurl}/CreateEmployee`,employee,{responseType:'text'});
   }
 
   updateemployee(id:number,employee:Employee):Observable<any>{
-    return this.http.put(`${this.apiurl}/updateemp/${id}`,employee,{responseType:'text'})
+    return this.http.put(`${this.apiurl}/UpdateempwithResume/${id}`,employee,{responseType:'text'})
   }
 
   deleteemp(id:number):Observable<any>{
