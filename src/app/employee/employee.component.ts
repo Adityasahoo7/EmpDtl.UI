@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { windowToggle } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -26,7 +27,7 @@ selectedResume!: File;
   /**
    *
    */
-  constructor(private empservice:EmployeeService) {
+  constructor(private empservice:EmployeeService , private route:Router) {
     
   }
 ngOnInit(): void {
@@ -68,6 +69,11 @@ downloderesume(emp: Employee): void {
   });
 
 }
+logout():void{
+  localStorage.clear();
+  this.route.navigate(['/login']);
+}
+
 saveemployee(){
   if(this.isEdit){
     // this.empservice.updateemployee(this.employee.id!,this.employee)
