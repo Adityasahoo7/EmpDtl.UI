@@ -1,1 +1,73 @@
-<p>register works!</p>
+<div class="register-page">
+
+  <div class="register-card">
+
+    <div class="logo-section">
+      <div class="logo-circle">
+        <i class="bi bi-person-plus-fill"></i>
+      </div>
+      <h2>Create Account</h2>
+      <p>Join the Employee Management System</p>
+    </div>
+
+    <form (ngSubmit)="register()">
+
+      <div class="input-group-custom">
+        <label>Username</label>
+        <input
+          type="text"
+          [(ngModel)]="user.username"
+          name="Username"
+          placeholder="Enter your Username"
+          required>
+      </div>
+
+      
+
+      <div class="input-group-custom">
+        <label>Password</label>
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          placeholder="Create a strong password"
+          required>
+      </div>
+
+      <div class="input-group-custom">
+  <label>Role</label>
+
+  <select
+    [(ngModel)]="user.role"
+    name="role"
+    required>
+
+    <option value="" disabled selected>
+      Select Role
+    </option>
+
+    <option value="User">
+      User
+    </option>
+
+    <option value="Manager">
+      Manager
+    </option>
+
+  </select>
+</div>
+
+      <button type="submit" class="register-btn">
+        Create Account
+      </button>
+
+    </form>
+
+    <div class="footer-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </div>
+
+  </div>
+
+</div>
