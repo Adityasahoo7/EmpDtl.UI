@@ -1,93 +1,245 @@
 
-<h2>EMP DTL</h2>
-<p>This is The Employee Management System</p>
+<nav class="navbar">
 
-<button class="btn btn-danger" (click)="logout()">
-  Logout
-</button>
+  <div class="logo">
+    🚀 EMS Pro
+  </div>
 
-<label>Name</label>
-<input type="text" class="form-control" [(ngModel)]="employee.name" placeholder="Enter The Name" >
-<label>
-    Email
-</label>
-<input type="text" class="form-control" [(ngModel)]="employee.email" placeholder="Enter Email" >
-<label>Phone</label>
-<input type="text" class="form-control" [(ngModel)]="employee.phone" placeholder="Enter Phone">
-<label>Department</label>
-<input type="text" class="form-control" [(ngModel)]="employee.department" placeholder="Enter Department">
-<label>Designation</label>
-<input type="text" class="form-control" [(ngModel)]="employee.designation" placeholder="Enter Designation">
-<label>Salary</label>
-<input type="text" class="form-control" [(ngModel)]="employee.salary" placeholder="Enter Salary">
+  <ul class="nav-links">
+
+    <li class="dropdown">
+
+      <a href="#">Dashboard ▾</a>
+
+      <ul class="dropdown-menu">
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Statistics</a></li>
+      </ul>
+
+    </li>
+
+    <li class="dropdown">
+
+      <a href="#">Employee ▾</a>
+
+      <ul class="dropdown-menu">
+        <li><a href="#">Add Employee</a></li>
+        <li><a href="#">Employee List</a></li>
+        <li><a href="#">Departments</a></li>
+      </ul>
+
+    </li>
+
+    <li class="dropdown">
+
+      <a href="#">Reports ▾</a>
+
+      <ul class="dropdown-menu">
+        <li><a href="#">Salary Report</a></li>
+        <li><a href="#">Attendance</a></li>
+        <li><a href="#">Performance</a></li>
+      </ul>
+
+    </li>
+
+  </ul>
+
+  <div class="profile-dropdown">
+
+    <button class="profile-btn">
+      👤 {{username}} ▾
+    </button>
+
+    <div class="profile-menu">
+
+      <a href="#">Profile</a>
+
+      <a href="#">Settings</a>
+
+      <a (click)="logout()">Logout</a>
+
+    </div>
+
+  </div>
+
+</nav>
 
 
+<div class="dashboard-container">
 
-<div *ngIf="!isEdit">
-    
-<label>ManagerId</label>
-<input type="text" class="form-control" [(ngModel)]="employee.managerId" placeholder="Enter ManagerId">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>🚀 Employee Management System</h1>
+      <p>Manage employees with futuristic HR technology</p>
+    </div>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-container">
+
+    <div class="stat-card">
+      <h2>{{employees.length}}</h2>
+      <p>Total Employees</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>HRMS</h2>
+      <p>Management Portal</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>2026</h2>
+      <p>Future Ready</p>
+    </div>
+
+  </div>
+
+  <!-- Form Card -->
+  <div class="glass-card">
+
+    <h2>
+      {{ isEdit ? '✏️ Update Employee' : '➕ Add Employee' }}
+    </h2>
+
+    <div class="form-grid">
+
+      <div>
+        <label>Name</label>
+        <input type="text"
+               [(ngModel)]="employee.name"
+               placeholder="Enter employee name">
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email"
+               [(ngModel)]="employee.email"
+               placeholder="Enter email">
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <input type="text"
+               [(ngModel)]="employee.phone"
+               placeholder="Enter phone number">
+      </div>
+
+      <div>
+        <label>Department</label>
+        <input type="text"
+               [(ngModel)]="employee.department"
+               placeholder="Enter department">
+      </div>
+
+      <div>
+        <label>Designation</label>
+        <input type="text"
+               [(ngModel)]="employee.designation"
+               placeholder="Enter designation">
+      </div>
+
+      <div>
+        <label>Salary</label>
+        <input type="number"
+               [(ngModel)]="employee.salary"
+               placeholder="Enter salary">
+      </div>
+
+      <div *ngIf="!isEdit">
+        <label>Manager ID</label>
+        <input type="number"
+               [(ngModel)]="employee.managerId"
+               placeholder="Enter manager id">
+      </div>
+
+      <div>
+        <label>Joining Date</label>
+        <input type="date"
+               [(ngModel)]="employee.joindate">
+      </div>
+
+      <div class="full-width">
+        <label>Resume Upload</label>
+        <input type="file"
+               accept=".pdf,.doc,.docx"
+               (change)="onResumeSelected($event)">
+      </div>
+
+    </div>
+
+    <button class="save-btn" (click)="saveemployee()">
+      {{ isEdit ? 'Update Employee' : 'Add Employee' }}
+    </button>
+
+  </div>
+
+  <!-- Employee Table -->
+  <div class="table-card">
+
+    <h2>📋 Employee Records</h2>
+
+    <div class="table-wrapper">
+
+      <table class="employee-table">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Joining Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let emploop of employees">
+
+            <td>{{emploop.id}}</td>
+            <td>{{emploop.name}}</td>
+            <td>{{emploop.email}}</td>
+            <td>₹{{emploop.salary}}</td>
+            <td>{{emploop.department}}</td>
+            <td>{{emploop.designation}}</td>
+            <td>{{emploop.joindate}}</td>
+
+            <td>
+
+              <button class="action-btn download"
+                (click)="downloderesume(emploop)">
+                Resume
+              </button>
+
+              <button class="action-btn edit"
+                (click)="editemployee(emploop)">
+                Edit
+              </button>
+
+              <button class="action-btn delete"
+                (click)="deleteemployee(emploop.id!)">
+                Delete
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
 
 </div>
-
-<label>Joining Date</label>
-<input type="date" class="form-control" [(ngModel)]="employee.joindate" name="joindate">
-
-<label class="form-label">Resume</label>
-
-  <input
-    type="file"
-    class="form-control"
-    accept=".pdf,.doc,.docx"
-    (change)="onResumeSelected($event)">
-
-<button class="btn btn-primary" 
-        (click)="saveemployee()">
-         {{ isEdit ? 'Update Employee' : 'Add Employee' }}
-
-</button>
-
-<table class="table table-bordered table-striped mt-5">
-
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Salary</th>
-                <th>Department</th>
-                <th>Designation</th>
-                <!-- <th>ManagerId</th> -->
-                <th>Joining Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let emploop of employees">
-                <td>{{emploop.id}}</td>
-                <td>{{emploop.name}}</td>
-                <td>{{emploop.email}}</td>
-                <td>{{emploop.salary}}</td>
-                <td>{{emploop.department}}</td>
-                <td>{{emploop.designation}}</td>
-                <!-- <td>{{emploop.managerId}}</td> -->
-                <td>{{emploop.joindate}}</td>
-
-
-                <td>
-                    <button class=" btn btn-primary btn-sm me-2"
-                    (click)="downloderesume(emploop)">
-                        Downlode Resume
-                    </button>
-                    <button class="btn btn-warning btn-sm me-2"
-                    (click)="editemployee(emploop)">
-                        Edit
-                    </button>
-                    <button class="btn btn-danger btn-sm"
-                    (click)="deleteemployee(emploop.id!)">
-                        Delete
-                    </button>
-                </td>
-
-            </tr>
-        </tbody>

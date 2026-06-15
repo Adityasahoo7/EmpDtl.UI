@@ -26,6 +26,7 @@ login(){
     next:(res:any)=>{
 
       localStorage.setItem('token',res.token);
+      localStorage.setItem('username',res.username);
      // alert('Login Successfully');
       console.log(res)
       this.router.navigate(['/employee'])

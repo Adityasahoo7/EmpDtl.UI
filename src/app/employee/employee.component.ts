@@ -24,6 +24,8 @@ export class EmployeeComponent implements OnInit{
     
   };
 selectedResume!: File;
+username:string='';
+
   isEdit = false;
   /**
    *
@@ -33,6 +35,7 @@ selectedResume!: File;
   }
 ngOnInit(): void {
   this.getallemp();
+  this.username=localStorage.getItem('username') || '';
 }
 getallemp(){
   this.empservice.getallemp().subscribe({
