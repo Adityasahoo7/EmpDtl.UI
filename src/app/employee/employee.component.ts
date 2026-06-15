@@ -19,7 +19,8 @@ export class EmployeeComponent implements OnInit{
     department:'',
     designation:'',
     salary:0,
-    managerId:0
+    managerId:0,
+    joindate:''
     
   };
 selectedResume!: File;
@@ -37,6 +38,7 @@ getallemp(){
   this.empservice.getallemp().subscribe({
     next:(data)=>{
       this.employees=data
+      console.log(data);
     },
     error: (err)=>{
       console.log(err);
@@ -95,6 +97,7 @@ formdata.append('Phone',this.employee.phone);
 formdata.append('Department',this.employee.department);
 formdata.append('Designation',this.employee.designation);
 formdata.append('Salary',(this.employee.salary ?? 0).toString());
+formdata.append('joindate',(this.employee.joindate));
 
 if(this.selectedResume){
   formdata.append('Resume',this.selectedResume)
@@ -138,6 +141,8 @@ formdata.append('Department',this.employee.department);
 formdata.append('Designation',this.employee.designation);
 formdata.append('Salary',(this.employee.salary ?? 0).toString());
 formdata.append('ManagerId',this.employee.managerId.toString());
+formdata.append('joindate',(this.employee.joindate));
+console.log(this.employee.joindate);
 
 if(this.selectedResume){
   formdata.append('Resume',this.selectedResume);
@@ -223,7 +228,8 @@ resetForm(){
     department:'',
     designation:'',
     salary:0,
-    managerId:0
+    managerId:0,
+    joindate:''
   };
   this.isEdit=false;
 }

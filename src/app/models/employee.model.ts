@@ -8,5 +8,5 @@ department:string;
 designation:string;
 salary:number;
 managerId:number
-
+joindate:string
 }

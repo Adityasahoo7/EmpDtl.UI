@@ -22,12 +22,16 @@
 <input type="text" class="form-control" [(ngModel)]="employee.salary" placeholder="Enter Salary">
 
 
+
 <div *ngIf="!isEdit">
     
 <label>ManagerId</label>
 <input type="text" class="form-control" [(ngModel)]="employee.managerId" placeholder="Enter ManagerId">
 
 </div>
+
+<label>Joining Date</label>
+<input type="date" class="form-control" [(ngModel)]="employee.joindate" name="joindate">
 
 <label class="form-label">Resume</label>
 
@@ -53,7 +57,8 @@
                 <th>Salary</th>
                 <th>Department</th>
                 <th>Designation</th>
-                <th>ManagerId</th>
+                <!-- <th>ManagerId</th> -->
+                <th>Joining Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -65,7 +70,8 @@
                 <td>{{emploop.salary}}</td>
                 <td>{{emploop.department}}</td>
                 <td>{{emploop.designation}}</td>
-                <td>{{emploop.managerId}}</td>
+                <!-- <td>{{emploop.managerId}}</td> -->
+                <td>{{emploop.joindate}}</td>
 
 
                 <td>

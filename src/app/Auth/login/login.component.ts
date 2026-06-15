@@ -26,11 +26,16 @@ login(){
     next:(res:any)=>{
 
       localStorage.setItem('token',res.token);
-      alert('Login Successfully');
+     // alert('Login Successfully');
       console.log(res)
       this.router.navigate(['/employee'])
     },
     error:(err)=>{
+      alert('Please Enter Valid Crediential');
+      this.logindata={
+      username:'',
+      password:''
+      };
       console.log(err);
     }
   });
