@@ -26,6 +26,10 @@ export class EmployeeService {
       }
     );
   }
+
+  changepassword(user:any):Observable<any>{
+    return this.http.post(`${this,this.apiurl}/ChnagePassword`,user);
+  }
   addemployee(employee:Employee):Observable<any>{
     return this.http.post(`${this.apiurl}/CreateEmployee`,employee,{responseType:'text'});
   }
