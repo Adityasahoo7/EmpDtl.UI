@@ -385,3 +385,78 @@ input:focus{
 .profile-dropdown:hover .profile-menu{
   display:block;
 }
+
+/* Navigation */
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin:0;
+    padding:0;
+}
+
+.nav-links li{
+    list-style:none;
+}
+
+/* Dropdown */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown>a{
+    color:#fff;
+    text-decoration:none;
+    padding:12px 16px;
+    display:block;
+}
+
+/* Hide menu */
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+
+    min-width:220px;
+
+    background:#fff;
+    border-radius:8px;
+
+    padding:8px 0;
+
+    list-style:none;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+    z-index:9999;
+}
+
+/* Show on hover */
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+/* Menu Items */
+
+.dropdown-menu li{
+    width:100%;
+}
+
+.dropdown-menu li a{
+    display:block;
+    padding:12px 18px;
+    text-decoration:none;
+    color:#333;
+    transition:.25s;
+}
+
+.dropdown-menu li a:hover{
+    background:#f2f2f2;
+    color:#0d6efd;
+}
