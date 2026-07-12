@@ -359,7 +359,25 @@ input:focus{
   text-decoration:none;
   cursor:pointer;
 }
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.profile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.profile-dropdown:hover .profile-menu {
+  display: block;
+}
 .profile-menu a:hover{
   background:#334155;
 }
