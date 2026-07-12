@@ -7,13 +7,15 @@ import { EmployeeComponent } from './employee/employee.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './Auth/login/login.component';
-import { RegisterComponent } from './Auth/register/register.component'
+import { RegisterComponent } from './Auth/register/register.component';
+import { ChangepasswordComponent } from './Auth/changepassword/changepassword.component'
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,
